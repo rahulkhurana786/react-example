@@ -110,7 +110,7 @@ export default function UsersList() {
     <SafeAreaView style={{ flex: 1, backgroundColor: '#1E1B26' }}>
       <StatusBar barStyle="dark-content" hidden={false} backgroundColor="#00BCD4" translucent={true} />
       <View style={{ flex: 1, paddingHorizontal: 16, paddingTop: 30 }}>
-        <Text style={{ color: 'white', fontSize: 22 }}>Bestsellers</Text>
+        {/* <Text style={{ color: 'white', fontSize: 22 }}>Bestsellers</Text> */}
         <View style={{ flex: 1, marginTop: 8 }}>
           <FlatList
             refreshControl={<RefreshControl

@@ -22,10 +22,13 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
+    const [isSecurePasswordTextEntry, setSecurePasswordTextEntry] = useState(true);
     const navigation = useNavigation();
 
     useEffect(() => {
         LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
+        LogBox.ignoreAllLogs();//Hide all warning notifications on front-end
+        
     }, [])
 
     function validateLogin() {
@@ -41,7 +44,7 @@ export default function Login() {
         } else if (!password) {
             ref_email.current.focus();
             setPasswordError('Required');
-        } else if (email.trim() != 'reactnative@jetdevs.com' && password != 'jetdevs@123') {
+        } else if ((email.trim() != 'reactnative@jetdevs.com') || (password != 'jetdevs@123')) {
             ref_password.current.focus();
             setPasswordError('Authentication failed');
         } else {
@@ -60,13 +63,22 @@ export default function Login() {
         );
     }
 
+    function onAccessoryPress() {
+        setSecurePasswordTextEntry(!isSecurePasswordTextEntry);
+    }
+
     function renderPasswordAccessory() {
+        let name = isSecurePasswordTextEntry ?
+            'eye' :
+            'eye-off';
+
         return (
             <MaterialCommunityIcons
+                size={22}
+                name={name}
                 color={'#64676D'}
-                size={16}
-                name={'key'}
-                style={styles.iconEDT}
+                onPress={onAccessoryPress}
+                suppressHighlighting={true}
             />
         );
     }
@@ -92,9 +104,11 @@ export default function Login() {
                     allowFontScaling={false}
                     renderRightAccessory={renderUserAccessory}
                     baseColor={'rgba(112,112,112, 0.5)'}
+                    autoCapitalize={"none"}
                 />
                 <OutlinedTextField
                     onChangeText={setPassword}
+                    secureTextEntry={isSecurePasswordTextEntry}
                     autoCapitalize={"none"}
                     inputContainerStyle={styles.lgn_txtInput}
                     autoCorrect={false}

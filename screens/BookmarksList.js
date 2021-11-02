@@ -81,7 +81,7 @@ export default function BookmarksList() {
       <StatusBar barStyle="dark-content" hidden={false} backgroundColor="#00BCD4" translucent={true} />
 
       <View style={{ flex: 1, paddingHorizontal: 16, paddingTop: 30 }}>
-        <Text style={{ color: 'white', fontSize: 22 }}>Bookmarks</Text>
+        {/* <Text style={{ color: 'white', fontSize: 22 }}>Bookmarks</Text> */}
         <View style={{ flex: 1, marginTop: 8 }}>
           {bookmarks.length === 0 ? (
             <Text style={{ color: '#64676D', fontSize: 18 }}>
